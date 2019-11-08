@@ -3,10 +3,10 @@ const bcrypt = require('bcryptjs');
 
 
 async function login(req, res){
-    const {username, password} = req.body;
+    const {email, password} = req.body;
       const db = req.app.get('db');
 
-      const foundUser = await db.auth.checkForUserName(username);
+      const foundUser = await db.auth.checkForUserName(email);
 
       if (!foundUser[0]) {
          res.status(403).json("Username or Password incorrect")
@@ -23,8 +23,8 @@ async function login(req, res){
             
             req.session.user = {
                user_id: foundUser[0].user_id,
-               username: foundUser[0].username,
-               
+               email: foundUser[0].email,
+               name: foundUser[0].name
             };
 
             
@@ -45,10 +45,10 @@ async function logout(req, res){
 }
 
 async function register(req, res){
-    const {username, password} = req.body;
+    const {email, password, name} = req.body;
       const db = req.app.get('db');
 
-      const foundUser = await db.auth.checkForUserName(username);
+      const foundUser = await db.auth.checkForUserName(email);
 
       if (foundUser[0]) {
          res.status(409).json("Username Taken")
@@ -57,13 +57,13 @@ async function register(req, res){
          const salt = bcrypt.genSaltSync(10);
          const hash = bcrypt.hashSync(password, salt)
 
-         const newUser = await db.auth.registerUser(username, hash);
+         const newUser = await db.auth.registerUser(email, hash, name);
          
          
          req.session.user = {
             user_id: newUser[0].user_id,
-            username: newUser[0].username,
-            
+            email: newUser[0].email,
+            name: newUser[0].name
          };
          
          
