@@ -36,7 +36,14 @@ async function login(req, res){
 }
 
 async function editUser(req, res){
-
+   const {email, name} = req.body;
+   const db = req.app.get('db');
+   const user = await db.auth.editUser(name, email);
+   req.session.user = {
+      email: user[0].email,
+      name: user[0].name
+   }
+   res.status(200).json(req.session.user);
 }
 
 async function logout(req, res){
