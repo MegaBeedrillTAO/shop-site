@@ -6,6 +6,7 @@ require('dotenv').config();
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 const {login, logout, register, deleteUser, editUser} = require('./controllers/authController')
 const {getInfo, editInfo} = require('./controllers/infoController')
+const {emailUsers} = require('./controllers/emailController')
 
 app.use(express.json());
 
@@ -37,6 +38,9 @@ app.delete('/auth/delete', deleteUser);
 //info
 app.get('/api/info', getInfo);
 app.put('/api/info/edit', editInfo);
+
+//email
+app.get('/email/save', emailUsers);
 
 
 app.listen(SERVER_PORT, () =>{

@@ -12,11 +12,11 @@ let transporter = nodemailer.createTransport({
 
 async function emailUsers(req, res){
     const {specials, announcments} = req.session.info;
-    const mailSpecials = specials.map((el) => {
-    return <li>{el.content} {el.price}</li>
-    })
+    const mailSpecials = specials.map((el) => (
+     `<li>${el.content} ${el.price}</li>`
+    ))
     const db = req.app.get('db');
-    const users = await db.auth.getAllUsers();
+    const users = await db.auth.getAllUsers()
     for (let i = 0; i < users.length; i++){
         let mailOptions = {
             from: `J's Burger <j.s_burger@yahoo.com>`,
@@ -33,5 +33,18 @@ async function emailUsers(req, res){
             </div>
             </b>`
         }
+        transporter.sendMail(mailOptions)
+        .then(() => {
+            console.log("The email was sent.")
+        })
+        .catch((err) =>{
+            console.log('error', err)
+        })
     }
+
+    res.sendStatus(200);
+}
+
+module.exports ={
+    emailUsers
 }
