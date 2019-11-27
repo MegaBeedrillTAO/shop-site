@@ -37,10 +37,9 @@ app.delete('/auth/delete', deleteUser);
 
 //info
 app.get('/api/info', getInfo);
-app.put('/api/info/edit', editInfo);
+app.put('/api/info/edit', editInfo, emailUsers);
 
-//email
-app.get('/email/save', emailUsers);
+
 
 
 app.listen(SERVER_PORT, () =>{

@@ -12,7 +12,7 @@ async function getInfo(req, res){
 }
 
 
-async function editInfo(req, res){
+async function editInfo(req, res, next){
     const {menu_img, announcments, specials} = req.body;
     const db = req.app.get('db');
     db.info.deleteSpecials();
@@ -27,6 +27,7 @@ async function editInfo(req, res){
         specials: [...special]
     }
     res.status(200).json(req.session.info);
+    next();
 }
 
 module.exports = {
