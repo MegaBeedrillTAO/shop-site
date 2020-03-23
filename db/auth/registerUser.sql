@@ -1,3 +1,3 @@
 INSERT INTO users (name, email, isadmin, password)
-VALUES ($1, $2, true, $3)
+VALUES ($1, $2, false, $3)
 RETURNING *;

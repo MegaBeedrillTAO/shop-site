@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-export class Resister extends Component {
+export class Register extends Component {
     render() {
         return (
             <div>
@@ -19,4 +19,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Resister)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
