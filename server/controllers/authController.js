@@ -24,7 +24,8 @@ async function login(req, res){
             req.session.user = {
                user_id: foundUser[0].user_id,
                email: foundUser[0].email,
-               name: foundUser[0].name
+               name: foundUser[0].name,
+               is_admin: foundUser[0].isadmin
             };
 
             
@@ -59,7 +60,11 @@ async function register(req, res){
 
       if (foundUser[0]) {
          res.status(409).json("Username Taken")
-      } else {
+      } 
+      else if (email === '' || password === '' || name === ''){
+         res.status(406).json("Please fill in all fields")
+      }
+      else {
 
          const salt = bcrypt.genSaltSync(10);
          const hash = bcrypt.hashSync(password, salt)
@@ -70,7 +75,8 @@ async function register(req, res){
          req.session.user = {
             user_id: newUser[0].user_id,
             email: newUser[0].email,
-            name: newUser[0].name
+            name: newUser[0].name,
+            is_admin: newUser[0].isadmin
          };
          
          
