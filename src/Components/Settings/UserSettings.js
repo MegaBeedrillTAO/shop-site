@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-export class Settings extends Component {
+export class UserSettings extends Component {
     render() {
         return (
             <div>
@@ -11,12 +11,12 @@ export class Settings extends Component {
     }
 }
 
-const mapStateToProps = (reduxState) => ({
-    is_admin: reduxState.authReducer.is_admin
+const mapStateToProps = (state) => ({
+    
 })
 
 const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+export default connect(mapStateToProps, mapDispatchToProps)(UserSettings)

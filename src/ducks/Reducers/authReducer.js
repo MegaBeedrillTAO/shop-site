@@ -53,6 +53,28 @@ export default function reducer(state = initialState, action){
                 name: payload.data.name,
                 user_id: payload.data.user_id
             }
+        case `${REGISTER_USER}_FULFILLED`:
+            return {
+                ...state,
+                is_admin: payload.data.is_admin,
+                email: payload.data.email,
+                name: payload.data.name,
+                user_id: payload.data.user_id
+            };
+        case LOGOUT_USER:
+            return {
+                userId: null,
+                name: '',
+                email: '',
+                is_admin: ''
+            };
+        case DELETE_USER:
+            return {
+                userId: null,
+                name: '',
+                email: '',
+                is_admin: ''
+            }
         default: return state;
     }
 }
