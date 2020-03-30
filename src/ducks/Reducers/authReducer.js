@@ -11,6 +11,7 @@ const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 const DELETE_USER = 'DELETE_USER';
+const EDIT_USER = 'EDIT_USER'
 
 export function registerUser(newUser) {
     return {
@@ -32,7 +33,7 @@ export function logoutUser() {
     return {
        type: LOGOUT_USER
     }
- }
+}
 
 export function deleteUser(){
    Axios.delete('/auth/delete')

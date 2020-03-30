@@ -30,7 +30,7 @@ export class Login extends Component {
             return <Redirect to='/'/>
         }
         return (
-            <div>
+            <div className='login'>
                 <section>
                     <p>Email:</p>
                     <input name='email' onChange={this.handleInput}/>

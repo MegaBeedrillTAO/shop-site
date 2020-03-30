@@ -28,7 +28,7 @@ export class Register extends Component {
 
     render() {
         return (
-            <div>
+            <div className='register'>
                 <section>
                     <p>Email:</p>
                     <input name='email' onChange={this.handleInput}/>

@@ -22,7 +22,7 @@ export default class Auth extends Component {
 
     render() {
         return (
-            <div>
+            <div className='auth'>
                 <main>
                     {this.state.type === 'login' ? 
                     <Login/> : 

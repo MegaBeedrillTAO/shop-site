@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 export class AdminSettings extends Component {
     render() {
         return (
-            <div>
-                
+            <div className='admin_settings'>
+                <h1>Admin Stuff</h1>
             </div>
         )
     }
