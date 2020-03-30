@@ -35,6 +35,14 @@ export function logoutUser() {
     }
 }
 
+export function editUser(user){
+    Axios.put('/auth/edit')
+
+    return {
+        type: EDIT_USER
+    }
+}
+
 export function deleteUser(){
    Axios.delete('/auth/delete')
 
@@ -64,17 +72,24 @@ export default function reducer(state = initialState, action){
             };
         case LOGOUT_USER:
             return {
-                userId: null,
+                user_id: null,
                 name: '',
                 email: '',
                 is_admin: ''
             };
         case DELETE_USER:
             return {
-                userId: null,
+                user_id: null,
                 name: '',
                 email: '',
                 is_admin: ''
+            }
+        case EDIT_USER:
+            return {
+                is_admin: payload.data.is_admin,
+                email: payload.data.email,
+                name: payload.data.name,
+                user_id: payload.data.user_id
             }
         default: return state;
     }

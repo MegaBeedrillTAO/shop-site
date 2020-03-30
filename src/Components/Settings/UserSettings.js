@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import {editUser, deleteUser} from '../../ducks/Reducers/authReducer'
 
 export class UserSettings extends Component {
 
@@ -57,7 +58,8 @@ const mapStateToProps = (reduxState) => ({
 })
 
 const mapDispatchToProps = {
-    
+    editUser,
+    deleteUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSettings)
